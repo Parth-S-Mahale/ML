@@ -1,0 +1,46 @@
+17. Compute Accuracy, Error rate, Precision, Recall for following confusion
+ matrix ( Use formula for each)
+
+code:
+
+# Confusion matrix input from user
+TP = int(input("Enter True Positives (TP): "))
+FP = int(input("Enter False Positives (FP): "))
+FN = int(input("Enter False Negatives (FN): "))
+TN = int(input("Enter True Negatives (TN): "))
+
+# Calculations
+accuracy = (TP + TN) / (TP + TN + FP + FN)
+error_rate = (FP + FN) / (TP + TN + FP + FN)
+precision = TP / (TP + FP) if (TP + FP) != 0 else 0
+recall = TP / (TP + FN) if (TP + FN) != 0 else 0
+
+# Display results
+print("\n--- Results ---")
+print("Accuracy:", accuracy)
+print("Error Rate:", error_rate)
+print("Precision:", precision)
+print("Recall:", recall)
+
+
+
+
+
+
+# Confusion Matrix Values
+TP = 1
+FP = 1
+FN = 8
+TN = 90
+
+# Calculations
+accuracy = (TP + TN) / (TP + TN + FP + FN)
+error_rate = (FP + FN) / (TP + TN + FP + FN)
+precision = TP / (TP + FP)
+recall = TP / (TP + FN)
+
+# Display results
+print("Accuracy:", accuracy)
+print("Error Rate:", error_rate)
+print("Precision:", precision)
+print("Recall:", recall)

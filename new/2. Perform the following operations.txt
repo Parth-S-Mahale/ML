@@ -1,0 +1,94 @@
+2. Perform the following operations using Python on the Telecom_Churn
+ dataset. Compute and display summary statistics for each feature available
+ in the dataset using separate commands for each statistic. (e.g. minimum
+ value, maximum value, mean, range, standard deviation, variance and
+ percentiles).
+
+
+code:
+import pandas as pd
+
+df=pd.read_csv(r"E:\TY\DSML_dataset\Telecom Churn.csv")
+
+df.head()
+
+df=df.select_dtypes(include="number")
+
+df.min()
+
+df.max()
+
+df.mean()
+
+df.max()-df.min()
+
+df.std()
+
+df.var()
+
+df.quantile(0.50)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import pandas as pd
+
+# Read dataset
+df = pd.read_csv(r"E:\TY\DSML_dataset\Telecom Churn.csv")
+
+# Display first few rows
+print(df.head())
+
+# Select only numeric columns for statistics
+df_num = df.select_dtypes(include="number")
+
+# Minimum value
+print("\nMinimum values:")
+print(df_num.min())
+
+# Maximum value
+print("\nMaximum values:")
+print(df_num.max())
+
+# Mean
+print("\nMean values:")
+print(df_num.mean())
+
+# Range (Max - Min)
+print("\nRange values:")
+print(df_num.max() - df_num.min())
+
+# Standard Deviation
+print("\nStandard Deviation values:")
+print(df_num.std())
+
+# Variance
+print("\nVariance values:")
+print(df_num.var())
+
+# Percentile (50% = Median)
+print("\n50th Percentile (Median) values:")
+print(df_num.quantile(0.50))

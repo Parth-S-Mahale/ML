@@ -1,0 +1,18 @@
+11. Use Iris flower dataset and perform following :
+ 1. List down the features and their types (e.g., numeric, nominal)
+ available in the dataset. 2. Create a histogram for each feature in the
+ dataset to illustrate the feature distributions.
+
+code:
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(r"E:\TY\DSML_dataset\IRIS.csv")
+
+df.hist(figsize=(10,6), color='skyblue')
+plt.suptitle("Feature Histograms for IRIS Dataset")
+plt.show()
+
+
+

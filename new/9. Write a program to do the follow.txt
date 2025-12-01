@@ -1,0 +1,55 @@
+9. Write a program to do the following: You have given a collection of 8
+ points. P1=[0.1,0.6] P2=[0.15,0.71] P3=[0.08,0.9] P4=[0.16, 0.85]
+ P5=[0.2,0.3] P6=[0.25,0.5] P7=[0.24,0.1] P8=[0.3,0.2]. Perform the k-mean
+ clustering with initial centroids as m1=P1 =Cluster#1=C1 and
+ m2=P8=cluster#2=C2. Answer the following 1] Which cluster does P6
+ belong to? 2] What is the population of a cluster around m2? 3] What is
+ the updated value of m1 and m2?
+
+
+code
+
+import math
+
+# Given points
+P1 = (0.1, 0.6)
+P2 = (0.15, 0.71)
+P3 = (0.08, 0.9)
+P4 = (0.16, 0.85)
+P5 = (0.2, 0.3)
+P6 = (0.25, 0.5)
+P7 = (0.24, 0.1)
+P8 = (0.3, 0.2)
+
+# Initial centroids
+m1 = P1   # cluster C1
+m2 = P8   # cluster C2
+
+# Function to calculate Euclidean distance
+def d(p, m):
+    return math.sqrt((p[0] - m[0])**2 + (p[1] - m[1])**2)
+
+# Assigning P6 manually
+d1 = d(P6, m1)
+d2 = d(P6, m2)
+
+print("Distance of P6 from m1:", d1)
+print("Distance of P6 from m2:", d2)
+
+if d1 < d2:
+    print("P6 belongs to Cluster C1")
+else:
+    print("P6 belongs to Cluster C2")
+
+# First Iteration Clusters (manually assigned by distances)
+C1 = [P1, P2, P3, P4, P6]        # closer to P1
+C2 = [P5, P7, P8]               # closer to P8
+
+print("Population of cluster C2 around m2:", len(C2))
+
+# Updated centroids
+m1_new = (sum(p[0] for p in C1) / len(C1), sum(p[1] for p in C1) / len(C1))
+m2_new = (sum(p[0] for p in C2) / len(C2), sum(p[1] for p in C2) / len(C2))
+
+print("Updated m1:", m1_new)
+print("Updated m2:", m2_new)

@@ -1,0 +1,162 @@
+ 25. Perform Data Cleaning, Data transformation using Python on any data
+ set.
+
+
+code;
+import pandas as pd
+
+
+df = pd.read_csv(r"E:\TY\DSML_dataset\House Data.csv")
+
+df.head()
+
+missing_values= df.isnull().sum()
+
+missing_values
+
+unique_values=df.nunique()
+
+unique_values
+
+df_cleaned = df.copy()
+
+for col in df_cleaned.columns:
+    if df_cleaned[col].dtype in ["int64","float64"]:
+        df_cleaned[col] = df_cleaned[col].fillna(df_cleaned[col].mean())
+    else:
+        df_cleaned[col] = df_cleaned[col].fillna(df_cleaned[col].mode()[0])
+
+df_cleaned.isnull().sum()
+
+df_cleaned.drop_duplicates(inplace=True)
+
+df_cleaned
+
+df_cleaned["price"] = df_cleaned["price"].str.replace(r"[^0-9]", "", regex=True).astype(float)
+
+df_cleaned["price"]
+
+def price_label(price):
+    if price < 2000000:
+        return "Low"
+    elif price < 5000000:
+        return "Medium"
+    else:
+        return "High"
+    df_cleaned["PriceCategory"] = df_cleaned["price"].apply(price_label)
+
+df_cleaned.head()
+
+
+df_cleaned.sort_values("price", inplace=True)
+
+df_cleaned.head()
+
+
+
+df_cleaned
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import pandas as pd
+
+# Read dataset
+df = pd.read_csv(r"E:\TY\DSML_dataset\House Data.csv")
+
+print(df.head())
+
+# 1. Check missing values
+missing_values = df.isnull().sum()
+print("\nMissing values before cleaning:\n", missing_values)
+
+# 2. Check unique values
+unique_values = df.nunique()
+print("\nUnique values in each column:\n", unique_values)
+
+# 3. Data Cleaning – fill missing values
+df_cleaned = df.copy()
+
+for col in df_cleaned.columns:
+    if df_cleaned[col].dtype in ["int64", "float64"]:
+        df_cleaned[col] = df_cleaned[col].fillna(df_cleaned[col].mean())
+    else:
+        df_cleaned[col] = df_cleaned[col].fillna(df_cleaned[col].mode()[0])
+
+print("\nMissing values after filling:\n", df_cleaned.isnull().sum())
+
+# 4. Remove duplicate rows
+df_cleaned.drop_duplicates(inplace=True)
+
+# 5. Data Transformation – convert price from text to numeric
+df_cleaned["price"] = df_cleaned["price"].str.replace(r"[^0-9]", "", regex=True).astype(float)
+
+print("\nPrice column after conversion:\n", df_cleaned["price"].head())
+
+# 6. Create new categorical column based on price (PriceCategory)
+def price_label(price):
+    if price < 2000000:
+        return "Low"
+    elif price < 5000000:
+        return "Medium"
+    else:
+        return "High"
+
+df_cleaned["PriceCategory"] = df_cleaned["price"].apply(price_label)
+
+print("\nData with PriceCategory:\n", df_cleaned[["price", "PriceCategory"]].head())
+
+# 7. Sort by price
+df_cleaned.sort_values("price", inplace=True)
+
+print("\nFinal cleaned and transformed data (top 5 rows):")
+print(df_cleaned.head())
+
+
+
+
+

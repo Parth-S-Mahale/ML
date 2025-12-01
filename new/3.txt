@@ -1,0 +1,86 @@
+3. Perform the following operations using Python on the data set
+ House_Price Prediction dataset. Compute standard deviation, variance and
+ percentiles using separate commands, for each feature. Create a histogram
+ for each feature in the dataset to illustrate the feature distributions.
+
+
+code
+
+import pandas as pd
+
+df = pd.read_csv(r"E:\TY\DSML_dataset\House Data.csv")
+
+df.head()
+
+dfa=df.select_dtypes(include='number')
+
+dfa.mean()
+
+dfa.std()
+
+dfa.var()
+
+dfa.quantile(0.50)
+
+import matplotlib.pyplot as plt
+
+plt.hist(df["price"])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Read dataset
+df = pd.read_csv(r"E:\TY\DSML_dataset\House Data.csv")
+
+print(df.head())
+
+# Select only numeric columns
+dfa = df.select_dtypes(include="number")
+
+# Standard deviation
+print(dfa.std())
+
+# Variance
+print(dfa.var())
+
+# Percentiles (median)
+print(dfa.quantile(0.50))
+
+# Histogram for each numeric feature
+dfa.hist(figsize=(10,6))
+plt.show()

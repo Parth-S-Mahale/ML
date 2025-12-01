@@ -1,0 +1,71 @@
+ 14. Use the covid_vaccine_statewise.csv dataset and perform the following
+ analytics.
+ A. Describe the dataset.
+ B. Number of Males vaccinated
+ C.. Number of females vaccinated
+
+
+code:
+
+import pandas as pd
+
+df = pd.read_csv(r"E:\TY\DSML_dataset\Covid Vaccine Statewise.csv")
+
+df.head()
+
+
+df.describe()
+
+total_males=df["Male(Individuals Vaccinated)"].sum()
+
+total_males
+
+total_females=df["Female(Individuals Vaccinated)"].sum
+
+total_females
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import pandas as pd
+
+df = pd.read_csv(r"E:\TY\DSML_dataset\Covid Vaccine Statewise.csv")
+
+print(df.head())
+
+print(df.describe())
+
+total_males = df["Male(Individuals Vaccinated)"].sum()
+print("Total males vaccinated:", total_males)
+
+total_females = df["Female(Individuals Vaccinated)"].sum()
+print("Total females vaccinated:", total_females)

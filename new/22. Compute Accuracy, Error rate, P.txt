@@ -1,0 +1,62 @@
+ 22. Compute Accuracy, Error rate, Precision, Recall for the following
+ confusion matrix.
+ Actual Class\Predicted
+ class
+ cancer = yes
+ cancer = no
+ Total
+ cancer =
+ yes
+ 90
+ 140
+ 230
+ cancer = no
+ 210
+ 9560
+ 9770
+ Total
+ 300
+ 9700
+ 10000
+
+
+code:
+
+# Confusion matrix values
+TP = 90   # True Positive
+FN = 210  # False Negative
+FP = 140  # False Positive
+TN = 9560 # True Negative
+
+# Calculate metrics
+accuracy = (TP + TN) / (TP + TN + FP + FN)
+error_rate = (FP + FN) / (TP + TN + FP + FN)
+precision = TP / (TP + FP)
+recall = TP / (TP + FN)
+
+# Print results
+print("Accuracy:", accuracy)
+print("Error Rate:", error_rate)
+print("Precision:", precision)
+print("Recall:", recall)
+
+
+
+# User input for confusion matrix values
+TP = int(input("Enter True Positives (TP): "))
+FN = int(input("Enter False Negatives (FN): "))
+FP = int(input("Enter False Positives (FP): "))
+TN = int(input("Enter True Negatives (TN): "))
+
+# Calculations
+accuracy = (TP + TN) / (TP + TN + FP + FN)
+error_rate = (FP + FN) / (TP + TN + FP + FN)
+precision = TP / (TP + FP) if (TP + FP) != 0 else 0
+recall = TP / (TP + FN) if (TP + FN) != 0 else 0
+
+# Display results
+print("\n----- RESULTS -----")
+print("Accuracy:", accuracy)
+print("Error Rate:", error_rate)
+print("Precision:", precision)
+print("Recall:", recall)

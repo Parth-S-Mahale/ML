@@ -1,0 +1,50 @@
+23.With reference to Table , obtain the Frequency table for the
+ attribute age. From the frequency table you have obtained, calculate the
+ information gain of the frequency table while splitting on Age. (Use step
+ by step Python/Pandas commands)
+
+code:
+
+import pandas as pd
+from math import log2
+
+# Create DataFrame (enter the table given in the question)
+df = pd.DataFrame({
+    "Age":    ["Young","Young","Middle","Old","Old","Old","Middle","Young","Young","Old","Young","Middle","Middle","Old"],
+    "Income": ["High","High","High","Medium","Low","Low","Low","Medium","Low","Medium","High","Low","High","Medium"],
+    "Married":["No","No","No","No","Yes","Yes","No","No","Yes","Yes","No","Yes","No","No"],
+    "Health": ["Fair","Good","Fair","Fair","Fair","Good","Good","Fair","Fair","Fair","Good","Good","Fair","Good"],
+    "Class":  ["No","No","Yes","Yes","Yes","No","Yes","No","Yes","Yes","Yes","Yes","Yes","No"]
+})
+
+print("Dataset:\n", df)
+
+# ---------- 1. Frequency Table for Age vs Class ----------
+print("\nFrequency Table (Age vs Class):")
+freq_table = pd.crosstab(df["Age"], df["Class"])
+print(freq_table)
+
+# ---------- Entropy function ----------
+def entropy(column):
+    total = len(column)
+    counts = column.value_counts()
+    ent = 0
+    for c in counts:
+        p = c / total
+        ent += -p * log2(p)
+    return ent
+
+# ---------- 2. Total entropy before splitting ----------
+entropy_before = entropy(df["Class"])
+print("\nEntropy before splitting on Age:", entropy_before)
+
+# ---------- 3. Entropy after splitting on Age ----------
+entropy_after = 0
+for age, subset in df.groupby("Age"):
+    weight = len(subset) / len(df)
+    entropy_after += weight * entropy(subset["Class"])
+print("\nEntropy after splitting on Age:", entropy_after)
+
+# ---------- 4. Information Gain ----------
+info_gain = entropy_before - entropy_after
+print("\nInformation Gain for Age:", info_gain)

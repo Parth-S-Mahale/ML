@@ -1,0 +1,79 @@
+18. Use House_Price prediction dataset. Provide summary statistics (mean,
+ median, minimum, maximum, standard deviation) of variables (categorical
+ vs quantitative) such as- For example, if categorical variable is age groups
+ and quantitative variable is income, then provide summary statistics of
+ income grouped by the age groups.
+
+
+code
+
+import pandas as pd
+
+df = pd.read_csv(r"E:\TY\DSML_dataset\House Data.csv")
+
+df.head()
+
+df["price"] = df["price"].str.replace(r"[^0-9]", "", regex=True).astype(float)
+
+df["price"].head()
+
+df["price"].mean()
+
+df["price"].median()
+
+df["price"].min()
+
+df["price"].max()
+
+df["price"].std()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(r"E:\TY\DSML_dataset\House Data.csv")
+
+print(df.head())
+
+# Clean price column
+df["price"] = df["price"].str.replace(r"[^0-9]", "", regex=True).astype(float)
+
+# Summary statistics
+print("Mean:", df["price"].mean())
+print("Median:", df["price"].median())
+print("Minimum:", df["price"].min())
+print("Maximum:", df["price"].max())
+print("Standard Deviation:", df["price"].std())
+
+# Check column names
+print("\nColumns available:")
+print(df.columns)
+
+# Use 'district' column instead of province_name
+print("\nSummary statistics grouped by district:")
+print(df.groupby("district")["price"].describe())

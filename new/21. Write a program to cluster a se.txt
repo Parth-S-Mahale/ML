@@ -1,0 +1,43 @@
+21. Write a program to cluster a set of points using K-means for IRIS
+ dataset. Consider, K=4, clusters. Consider Euclidean distance as the
+ distance measure. Randomly initialize a cluster mean as one of the data
+ points. Iterate at least for 10 iterations. After iterations are over, print the
+ final cluster means for each of the clusters.
+
+
+code:
+
+import numpy as np
+import pandas as pd
+
+# 1. Load the Iris dataset (CSV or seaborn for practice)
+df = pd.read_csv(r"E:\TY\DSML_dataset\IRIS.csv")       # Or use seaborn.load_dataset("iris")
+X = df.iloc[:, 0:4].values          # Only numeric columns
+
+K = 4
+np.random.seed(42)
+
+n_points = X.shape[0]
+
+# 2. Randomly pick 4 initial centroids
+init_indices = np.random.choice(n_points, K, replace=False)
+centroids = X[init_indices, :].copy()
+
+def euclidean(a, b):
+    return np.sqrt(np.sum((a-b)**2))
+
+# 3. Run K-means for 10 iterations
+for itr in range(10):
+    clusters = [[] for _ in range(K)]
+    for p in X:
+        distances = [euclidean(p, center) for center in centroids]
+        assigned = np.argmin(distances)
+        clusters[assigned].append(p)
+    for i in range(K):
+        if clusters[i]:  # Avoid division by zero
+            centroids[i] = np.mean(clusters[i], axis=0)
+
+# 4. Print final centroids after 10 iterations
+print("Final cluster means after 10 iterations (K=4):")
+for i, center in enumerate(centroids):
+    print(f"Cluster {i+1}: {center}")

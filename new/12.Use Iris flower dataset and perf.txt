@@ -1,0 +1,16 @@
+12.Use Iris flower dataset and perform following :
+ 1. Create a box plot for each feature in the dataset.
+ 2. Identify and discuss distributions and identify outliers from them.
+
+
+code:
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(r"E:\TY\DSML_dataset\IRIS.csv")
+
+df.boxplot(figsize=(10,6))
+plt.title("Box Plot of Iris Dataset Features")
+plt.show()
+
